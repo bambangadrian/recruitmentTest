@@ -53,7 +53,7 @@ class EncodingDecoding extends \App\Model\AbstractBaseModel
      *
      * @var boolean $AlreadyEncoded
      */
-    private $AlreadyEncoded;
+    private $AlreadyEncoded = false;
 
     /**
      * Class constructor.

@@ -56,4 +56,11 @@
 //$appRotatingEncryption->setLeftRotate(5);
 //$appRotatingEncryption->setRightRotate(8);
 //echo $appRotatingEncryption->getCipher();
-# ---------------------------------------------------
+# --------------------------------------------------
+# Testing for sinus spatial calculation application.
+//$appSinusSpatialCalculation = new \App\Model\RecruitmentTest\SinusSpatialCalculation();
+//$appSinusSpatialCalculation->setLowerLimit(0);
+//$appSinusSpatialCalculation->setUpperLimit(90);
+//$appSinusSpatialCalculation->setIteration(100);
+//echo $appSinusSpatialCalculation->getAreaWide();
+# --------------------------------------------------

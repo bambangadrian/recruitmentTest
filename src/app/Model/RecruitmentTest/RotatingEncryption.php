@@ -53,7 +53,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
      *
      * @var boolean $HasEncrypted
      */
-    private $HasEncrypted;
+    private $HasEncrypted = false;
 
     /**
      * Class constructor.
@@ -87,7 +87,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
             $this->setRightRotate($this->getPostValue('rightRotate'));
             $this->setLeftRotate($this->getPostValue('leftRotate'));
             $this->setInputString($this->getPostValue('inputString'));
-            $this->doEncrypt();
+            $this->doEncrypt($this->getPostValue('algorithmMethod'));
         } catch (\Exception $e) {
             $this->setError($e->getMessage());
         }
@@ -211,8 +211,8 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
                 } elseif ($algorithmMethod === 'arr') {
                     $cipherText = $this->doEncryptUsingArray();
                 }
-                $this->setHasEncrypted(true);
                 $this->setCipher($cipherText);
+                $this->setHasEncrypted(true);
             }
         } catch (\Exception $e) {
             $this->setError($e->getMessage());
@@ -300,7 +300,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
         $leftRotate = $this->getLeftRotate();
         $rightRotate = $this->getRightRotate();
         $oddString = substr($oddString, $leftRotate, strlen($oddString) - $leftRotate).substr($oddString, 0, $leftRotate);
-        $evenString = substr($evenString, strlen($evenString) - $rightRotate) . substr($evenString, 0, strlen($evenString) - $rightRotate);
+        $evenString = substr($evenString, strlen($evenString) - $rightRotate).substr($evenString, 0, strlen($evenString) - $rightRotate);
         $oddCharArr = str_split($oddString);
         $evenCharArr = str_split($evenString);
         $cipherArr = [];

@@ -58,9 +58,9 @@ class BankInterest extends \App\Model\AbstractBaseModel
     /**
      * Calculation state property
      *
-     * @var boolean $Calculated
+     * @var boolean $HasCalculated
      */
-    private $Calculated = false;
+    private $HasCalculated = false;
 
     /**
      * Class constructor.
@@ -86,9 +86,9 @@ class BankInterest extends \App\Model\AbstractBaseModel
      *
      * @return boolean
      */
-    public function isCalculated()
+    public function isHasCalculated()
     {
-        return $this->Calculated;
+        return $this->HasCalculated;
     }
 
     /**
@@ -156,7 +156,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
         }
         # Set calculated flag to false if any change apply on interest rate number.
         if ($interestRate !== $this->getInterestRate()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->InterestRate = $interestRate;
     }
@@ -186,7 +186,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
         }
         # Set calculated flag to false if any change apply on period length.
         if ($periodLength !== $this->getPeriodLength()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->PeriodLength = (integer)$periodLength;
     }
@@ -216,7 +216,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
         }
         # Set calculated flag to false if any change apply on initial balance amount.
         if ($initialBalance !== $this->getInitialBalance()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->InitialBalance = $initialBalance;
         $this->BalanceSheet = [$this->getInitialBalance()];
@@ -230,7 +230,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
     public function doCalculate()
     {
         # Check if the calculation has run, so its not double run.
-        if ($this->isCalculated() === false) {
+        if ($this->isHasCalculated() === false) {
             $rate = $this->getInterestRate() / 100;
             # Optimize the for loop without calling any function.
             $periodLength = $this->getPeriodLength();
@@ -242,7 +242,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
             # Set the end balance from balance sheet array.
             $this->setEndBalance($this->getBalanceSheet()[$this->getPeriodLength() - 1]);
             # Set the calculated status flag.
-            $this->setCalculated(true);
+            $this->setHasCalculated(true);
         }
     }
 
@@ -253,9 +253,9 @@ class BankInterest extends \App\Model\AbstractBaseModel
      *
      * @return void
      */
-    protected function setCalculated($state)
+    protected function setHasCalculated($state)
     {
-        $this->Calculated = $state;
+        $this->HasCalculated = $state;
     }
 
     /**

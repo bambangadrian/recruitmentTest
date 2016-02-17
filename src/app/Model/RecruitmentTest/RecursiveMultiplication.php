@@ -58,9 +58,9 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
     /**
      * Calculated flag status.
      *
-     * @var boolean $Calculated
+     * @var boolean $HasCalculated
      */
-    private $Calculated;
+    private $HasCalculated = false;
 
     /**
      * Class constructor.
@@ -108,7 +108,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
     public function doCalculate($iterateEachNumber = false)
     {
         # Check if the calculation has run, so its not double run.
-        if ($this->isCalculated() === false) {
+        if ($this->isHasCalculated() === false) {
             $start = $this->getStartNumber();
             $end = $this->getEndNumber();
             $resultArr = [];
@@ -122,7 +122,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
             }
             $this->setCalculationResult($resultArr[$end]);
             $this->setResultTable($resultArr);
-            $this->setCalculated(true);
+            $this->setHasCalculated(true);
         }
     }
 
@@ -155,7 +155,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
         }
         # Set calculated flag to false if any change apply on start number value.
         if ($startNumber !== $this->getStartNumber()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->StartNumber = $startNumber;
     }
@@ -189,7 +189,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
         }
         # Set calculated flag to false if any change apply on end number value.
         if ($endNumber !== $this->getEndNumber()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->EndNumber = $endNumber;
     }
@@ -223,7 +223,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
         }
         # Set calculated flag to false if any change apply on step number value.
         if ($step !== $this->getStep()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->Step = $step;
     }
@@ -256,9 +256,9 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
      *
      * @return boolean
      */
-    public function isCalculated()
+    public function isHasCalculated()
     {
-        return $this->Calculated;
+        return $this->HasCalculated;
     }
 
     /**
@@ -279,9 +279,9 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
      *
      * @return void
      */
-    protected function setCalculated($calculated)
+    protected function setHasCalculated($calculated)
     {
-        $this->Calculated = $calculated;
+        $this->HasCalculated = $calculated;
     }
 
     /**

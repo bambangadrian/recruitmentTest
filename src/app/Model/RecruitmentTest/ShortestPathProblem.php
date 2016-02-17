@@ -66,9 +66,9 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     /**
      * Calculated flag status property.
      *
-     * @var boolean $Calculated
+     * @var boolean $HasCalculated
      */
-    private $Calculated;
+    private $HasCalculated = false;
 
     /**
      * Class constructor
@@ -81,8 +81,6 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
         if (count($nodeCollection) > 0) {
             $this->setNodes($nodeCollection);
         }
-        # Define that the calculation still not run.
-        $this->setCalculated(false);
     }
 
     /**
@@ -162,7 +160,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
             }
             $path[] = $startNodeKey;
             $this->setShortestPath(array_reverse($path));
-            $this->setCalculated(true);
+            $this->setHasCalculated(true);
         } catch (\Exception $e) {
             $this->setError($e->getMessage());
         }
@@ -213,7 +211,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
                     }
                 }
                 $this->addNode($nodeObject);
-                $this->setCalculated(false);
+                $this->setHasCalculated(false);
             }
         } catch (\Exception $e) {
             $this->setError($e->getMessage());
@@ -252,7 +250,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     public function getShortestPath()
     {
         try {
-            if ($this->isCalculated() === false) {
+            if ($this->isHasCalculated() === false) {
                 $this->doCalculateShortestPath();
             }
         } catch (\Exception $e) {
@@ -301,7 +299,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     public function setStartNode($nodeKey)
     {
         if ($this->getStartNode() !== null and $nodeKey !== $this->getStartNode()->getKey()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->StartNode = $this->getNode($nodeKey);
     }
@@ -326,7 +324,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     public function setTargetNode($nodeKey)
     {
         if ($this->getTargetNode() !== null and $nodeKey !== $this->getTargetNode()->getKey()) {
-            $this->setCalculated(false);
+            $this->setHasCalculated(false);
         }
         $this->TargetNode = $this->getNode($nodeKey);
     }
@@ -336,9 +334,9 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
      *
      * @return boolean
      */
-    public function isCalculated()
+    public function isHasCalculated()
     {
-        return $this->Calculated;
+        return $this->HasCalculated;
     }
 
     /**
@@ -395,9 +393,9 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
      *
      * @return void
      */
-    protected function setCalculated($calculated)
+    protected function setHasCalculated($calculated)
     {
-        $this->Calculated = $calculated;
+        $this->HasCalculated = $calculated;
     }
 
     /**
