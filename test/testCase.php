@@ -50,3 +50,10 @@
 //$appCurrencyConversion->addCommand('CALC IDR USD 150000'); # Return float number as the conversion result.
 //$appCurrencyConversion->addCommand('END');
 # --------------------------------------------------
+# Testing for rotating encryption application.
+//$appRotatingEncryption = new \App\Model\RecruitmentTest\RotatingEncryption();
+//$appRotatingEncryption->setInputString('fritzgamaliel');
+//$appRotatingEncryption->setLeftRotate(5);
+//$appRotatingEncryption->setRightRotate(8);
+//echo $appRotatingEncryption->getCipher();
+# ---------------------------------------------------

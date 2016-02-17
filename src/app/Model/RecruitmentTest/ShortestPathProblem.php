@@ -3,7 +3,7 @@
  * This only for recruitment test purpose.
  *
  * @package   App
- * @author    Bambang Adrian S <bambang.as@optilog-global.com>
+ * @author    Bambang Adrian S <bambang.adrian@gmail.com>
  * @copyright 2016 Proprietary Software
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest

@@ -3,7 +3,7 @@
  * This only for recruitment test purpose.
  *
  * @package   App
- * @author    Bambang Adrian S <bambang.as@optilog-global.com>
+ * @author    Bambang Adrian S <bambang.adrian@gmail.com>
  * @copyright 2016 Proprietary Software
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
@@ -252,7 +252,7 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
                     $resultMessage = $this->doEndCommand();
                     break;
             }
-            echo $resultMessage.'\n';
+            echo $resultMessage;
             $this->addCommandResult($commandSegment['sequence'], $resultMessage);
         } catch (\Exception $e) {
             $this->setError($e->getMessage());
