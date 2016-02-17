@@ -3,12 +3,18 @@
 
 By: *[Bambang Adrian S] <bambang.adrian@gmail.com> 
 
-Open the path via : http://{your-local/domain}/public
-##Requirements : 
+## Features and Support:
+- PSR1,2 Standard and PSR4 Autoloader
+- All the solution/answer models located on `src\app\Model\RecruitmentTest`
+
+## Requirements : 
 - PHP 5.6
 - Composer
 - Rewrite Module Enabled
 
+Open the path via : http://{your-local/domain}/public
+
+Sorry for your uncovenience, because it's build under simple route system.
 
 ## 1. Bank Interest Calculation (Bunga Bank)
 ### Testing for bank interest application.
