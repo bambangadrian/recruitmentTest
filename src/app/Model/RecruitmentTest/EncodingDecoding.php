@@ -91,6 +91,16 @@ class EncodingDecoding extends \App\Model\AbstractBaseModel
     }
 
     /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return 'solution3';
+    }
+
+    /**
      * Do update model.
      *
      * @return boolean
@@ -141,7 +151,7 @@ class EncodingDecoding extends \App\Model\AbstractBaseModel
     {
         try {
             if ($this->isAlreadyEncoded() === false) {
-                $inputStringArray = $this->getInputStringToArray();
+                $inputStringArray = array_filter($this->getInputStringToArray());
                 $encodeResult = '';
                 foreach ($inputStringArray as $char) {
                     if ($this->isUseCodeTable() === true) {

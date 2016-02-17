@@ -1,11 +1,20 @@
 <?php
+/**
+ * This only for recruitment test purpose.
+ *
+ * @package   App
+ * @author    Bambang Adrian S <bambang.adrian@gmail.com>
+ * @copyright 2016 Proprietary Software
+ * @license   No License
+ * @link      https://github.com/bambangadrian/recruitmentTest
+ */
 namespace App\Model;
 
 /**
  * Class AbstractBaseModel
  *
  * @package    App
- * @subpackage \Model
+ * @subpackage Model
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
 abstract class AbstractBaseModel
@@ -38,6 +47,46 @@ abstract class AbstractBaseModel
         if (count($_GET) > 0) {
             $this->setGetValues($_GET);
         }
+    }
+
+    /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return '';
+    }
+
+    /**
+     * Do update model.
+     *
+     * @return boolean
+     */
+    public function doUpdate()
+    {
+        return true;
+    }
+
+    /**
+     * Get model data.
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->Data;
+    }
+
+    /**
+     * Get error data property.
+     *
+     * @return array
+     */
+    public function getError()
+    {
+        return $this->Error;
     }
 
     /**

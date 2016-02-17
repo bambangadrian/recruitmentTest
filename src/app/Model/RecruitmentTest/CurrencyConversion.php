@@ -80,6 +80,12 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
      */
     public function doUpdate()
     {
+        try {
+            $commands = array_filter(explode("\r\n", $this->getPostValue('commands')));
+            $this->setCommands($commands);
+        } catch (\Exception $e) {
+            $this->setError($e->getMessage());
+        }
         return true;
     }
 
@@ -137,10 +143,14 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
      * @param string $targetCurrency Target currency code parameter.
      * @param float  $rate           Conversion rate value parameter.
      *
+     * @throws \Exception If source currency has already exists.
      * @return string
      */
     public function addConversionRate($sourceCurrency, $targetCurrency, $rate)
     {
+        if (array_key_exists($sourceCurrency, $this->ConversionRate) === true) {
+            return 'ERROR : RATE';
+        }
         $this->ConversionRate[$sourceCurrency][$targetCurrency] = $rate;
         $this->ConversionRate[$targetCurrency][$sourceCurrency] = 1 / $rate;
         return 'SUCCESS';
@@ -182,7 +192,7 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
     public function getConversionRate($sourceCurrency, $targetCurrency, $value = 1.0)
     {
         # Init the result message return.
-        $result = 'ERROR: RATE';
+        $result = 'ERROR: CONVERSION';
         # Save conversion rate table to variable.
         $conversionTableList = $this->getConversionRateTable();
         # Search on the conversion rate table list data.
@@ -223,6 +233,16 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
     }
 
     /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return 'solution6';
+    }
+
+    /**
      * Execute the command string.
      *
      * @param array $commandSegment Command segment parameter.
@@ -249,10 +269,10 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
                     );
                     break;
                 case 'end':
-                    $resultMessage = $this->doEndCommand();
+                    # $resultMessage = $this->doEndCommand();
                     break;
             }
-            echo $resultMessage;
+            # echo $resultMessage;
             $this->addCommandResult($commandSegment['sequence'], $resultMessage);
         } catch (\Exception $e) {
             $this->setError($e->getMessage());

@@ -68,7 +68,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
      * @param integer $endNumber End number parameter.
      * @param integer $step      Step decrement number parameter.
      */
-    public function __construct($endNumber, $step = 3)
+    public function __construct($endNumber = 10, $step = 3)
     {
         try {
             parent::__construct();
@@ -96,6 +96,16 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
             $this->setError($e->getMessage());
         }
         return true;
+    }
+
+    /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return 'solution2';
     }
 
     /**

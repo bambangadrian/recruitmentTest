@@ -14,6 +14,7 @@
   },
   "autoload": {
     "psr-4": {
+      "Root\\": "public",
       "App\\": "src/app/",
       "System\\": "src/system/"
     }

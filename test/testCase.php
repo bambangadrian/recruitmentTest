@@ -14,7 +14,7 @@
 //var_dump(\App\Model\RecruitmentTest\EncodingDecoding::getCodeTable());
 //var_dump($appEncodingDecoding->getEncodeResult());
 # -------------------------------------------------
-# Testing for shortest path problem.
+# Testing for shortest path problem application.
 //$appShortestPathProblem = new \App\Model\RecruitmentTest\ShortestPathProblem();
 //$distanceArr = array();
 //$distanceArr[1][2] = 7;
@@ -39,7 +39,7 @@
 //$appShortestPathProblem->setStartNode(1);
 //$appShortestPathProblem->setTargetNode(5);
 //var_dump($appShortestPathProblem->getShortestPath());
-//echo $appShortestPathProblem->getShortPathRouteString();
+//echo $appShortestPathProblem->getShortestPathRouteString();
 # -------------------------------------------------
 # Test for currency conversion application.
 //$appCurrencyConversion = new \App\Model\RecruitmentTest\CurrencyConversion();

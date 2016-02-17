@@ -90,7 +90,40 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
      */
     public function doUpdate()
     {
+        try {
+            $nodePathLengthArr = $this->getPostValue('nodePathLength');
+            foreach ($nodePathLengthArr as $nodeKey => $nodePath) {
+                foreach ($nodePath as $lengthKey => $length) {
+                    if (is_numeric($length) === false) {
+                        unset($nodePathLengthArr[$nodeKey][$lengthKey]);
+                    }
+                }
+                if (count($nodePathLengthArr[$nodeKey]) === 0) {
+                    unset($nodePathLengthArr[$nodeKey]);
+                }
+            }
+            if (count($nodePathLengthArr) > 0) {
+                $this->setNodes($nodePathLengthArr);
+                $this->setStartNode($this->getPostValue('startNode'));
+                $this->setTargetNode($this->getPostValue('targetNode'));
+                $this->doCalculateShortestPath();
+            } else {
+                $this->setError('Please fill the node path length', 10001);
+            }
+        } catch (\Exception $e) {
+            $this->setError($e->getMessage());
+        }
         return true;
+    }
+
+    /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return 'solution4';
     }
 
     /**
@@ -104,10 +137,10 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     {
         try {
             if ($this->getStartNode() === null) {
-                throw new \Exception('Please set the start node');
+                throw new \Exception('Please set the start node', 10001);
             }
             if ($this->getTargetNode() === null) {
-                throw new \Exception('Please set the target node');
+                throw new \Exception('Please set the target node', 10002);
             }
             # Initialize the array for storing.
             $startNodeKey = $this->getStartNode()->getKey();
@@ -235,7 +268,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
              * @var \App\Model\RecruitmentTest\Vertex $nodeObject
              */
             $nodeObject = $node;
-            if ($nodeObject->getKey() === $nodeKey) {
+            if ((string)$nodeObject->getKey() === (string)$nodeKey) {
                 return $nodeObject;
             }
         }
@@ -344,7 +377,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
      *
      * @return string
      */
-    public function getShortPathRouteString()
+    public function getShortestPathRouteString()
     {
         return implode(' -> ', $this->getShortestPath());
     }

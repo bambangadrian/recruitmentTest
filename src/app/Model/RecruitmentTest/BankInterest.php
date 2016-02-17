@@ -142,6 +142,16 @@ class BankInterest extends \App\Model\AbstractBaseModel
     }
 
     /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return 'solution1';
+    }
+
+    /**
      * Set interest rate property.
      *
      * @param float $interestRate The interest rate parameter.
@@ -151,7 +161,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
      */
     public function setInterestRate($interestRate)
     {
-        if ($interestRate < 0) {
+        if ($interestRate < 0 or is_numeric($interestRate) === false) {
             throw new \Exception('Not valid interest rate, must greater than 0');
         }
         # Set calculated flag to false if any change apply on interest rate number.
@@ -181,7 +191,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
      */
     public function setPeriodLength($periodLength)
     {
-        if ($periodLength < 0) {
+        if ($periodLength < 0 or is_numeric($periodLength) === false or (integer)$periodLength != $periodLength) {
             throw new \Exception('Invalid period length, must be greater than 0');
         }
         # Set calculated flag to false if any change apply on period length.
@@ -211,7 +221,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
      */
     public function setInitialBalance($initialBalance)
     {
-        if ($initialBalance < 0) {
+        if ($initialBalance < 0 or is_numeric($initialBalance) === false) {
             throw new \Exception('Invalid initial balance, must be greater than 0');
         }
         # Set calculated flag to false if any change apply on initial balance amount.
@@ -230,7 +240,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
     public function doCalculate()
     {
         # Check if the calculation has run, so its not double run.
-        if ($this->isHasCalculated() === false) {
+        if ($this->isHasCalculated() === false and empty($this->getInitialBalance()) === false and empty($this->getInterestRate()) === false and empty($this->getPeriodLength()) === false) {
             $rate = $this->getInterestRate() / 100;
             # Optimize the for loop without calling any function.
             $periodLength = $this->getPeriodLength();
@@ -240,9 +250,11 @@ class BankInterest extends \App\Model\AbstractBaseModel
                 $this->setBalanceSheet(round(($rate * $currentBalance) + $currentBalance, 0), $i);
             }
             # Set the end balance from balance sheet array.
-            $this->setEndBalance($this->getBalanceSheet()[$this->getPeriodLength() - 1]);
+            $this->setEndBalance($this->BalanceSheet[$this->getPeriodLength() - 1]);
             # Set the calculated status flag.
             $this->setHasCalculated(true);
+        } else {
+            $this->setError('Cannot run the calculation, please fill out required field', 10001);
         }
     }
 

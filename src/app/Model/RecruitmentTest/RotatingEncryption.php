@@ -84,14 +84,24 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
     public function doUpdate()
     {
         try {
-            $this->setRightRotate($this->getPostValue('rightRotate'));
             $this->setLeftRotate($this->getPostValue('leftRotate'));
+            $this->setRightRotate($this->getPostValue('rightRotate'));
             $this->setInputString($this->getPostValue('inputString'));
             $this->doEncrypt($this->getPostValue('algorithmMethod'));
         } catch (\Exception $e) {
             $this->setError($e->getMessage());
         }
         return true;
+    }
+
+    /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return 'solution7';
     }
 
     /**

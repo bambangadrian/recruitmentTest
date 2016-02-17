@@ -68,7 +68,7 @@ class SinusSpatialCalculation extends \App\Model\AbstractBaseModel
      * @param float $lowerLimit Lower limit degree number parameter.
      * @param float $upperLimit Upper limit degree number parameter.
      */
-    public function __construct($lowerLimit = 0.0, $upperLimit = 0.0)
+    public function __construct($lowerLimit = 0.0, $upperLimit = 90.0)
     {
         parent::__construct();
         $this->setLowerLimit($lowerLimit);
@@ -84,10 +84,20 @@ class SinusSpatialCalculation extends \App\Model\AbstractBaseModel
     {
         $this->setLowerLimit($this->getPostValue('lowerLimit'));
         $this->setUpperLimit($this->getPostValue('upperLimit'));
-        $this->setIteration($this->getPostValue('delta'));
+        $this->setIteration($this->getPostValue('iteration'));
         $this->setMethod($this->getPostValue('calculationMethod'));
         $this->doSpaciousCalculation();
         return true;
+    }
+
+    /**
+     * Load model form.
+     *
+     * @return string
+     */
+    public function loadForm()
+    {
+        return 'solution5';
     }
 
     /**
