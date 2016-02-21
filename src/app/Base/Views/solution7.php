@@ -48,7 +48,10 @@
 
 <?php
 if (empty($modelObject->getError()) === false) {
-    echo '<div style="margin: 10px; background-color: #ddd;padding: 10px; border: 1px solid red; color: red; font-weight: bold;">'.implode(', ', $modelObject->getError()).'</div>';
+    echo '<div style="margin: 10px; background-color: #ddd;padding: 10px; border: 1px solid red; color: red; font-weight: bold;">' . implode(
+            ', ',
+            $modelObject->getError()
+        ) . '</div>';
 }
 if ($modelObject->isHasEncrypted() === true) {
     ?>

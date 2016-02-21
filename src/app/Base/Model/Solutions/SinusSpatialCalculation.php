@@ -133,7 +133,10 @@ class SinusSpatialCalculation extends \Project\App\Base\Model\AbstractBaseModel
         # Calculate using rectangle (formula : length x height).
         # Start iteration.
         $sumOfRectangleArea = 0;
-        for ($startPointX = $this->getLowerLimit(); $startPointX <= $this->getUpperLimit(); $startPointX += $this->getDelta()) {
+        $lowerLimit = $this->getLowerLimit();
+        $upperLimit = $this->getUpperLimit();
+        $delta = $this->getDelta();
+        for ($startPointX = $lowerLimit; $startPointX <= $upperLimit; $startPointX += $delta) {
             $rectangleHeight = abs(sin(deg2rad($startPointX)));
             $sumOfRectangleArea += $this->getDelta() * $rectangleHeight;
         }
@@ -150,7 +153,10 @@ class SinusSpatialCalculation extends \Project\App\Base\Model\AbstractBaseModel
         # Calculate using parallelogram (formula: sum of parallel sides * height /2 ).
         # Start iteration.
         $sumOfParallelogramArea = 0;
-        for ($startPointX = $this->getLowerLimit(); $startPointX <= $this->getUpperLimit(); $startPointX += $this->getDelta()) {
+        $lowerLimit = $this->getLowerLimit();
+        $upperLimit = $this->getUpperLimit();
+        $delta = $this->getDelta();
+        for ($startPointX = $lowerLimit; $startPointX <= $upperLimit; $startPointX += $delta) {
             $endPointX = $startPointX + $this->getDelta();
             $sideHeight1 = abs(sin(deg2rad($startPointX)));
             $sideHeight2 = abs(sin(deg2rad($endPointX)));

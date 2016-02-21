@@ -63,7 +63,7 @@ class BankInterest extends \Project\App\Base\Model\AbstractBaseModel
     private $HasCalculated = false;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param float   $interestRate   The interest rate parameter.
      * @param integer $periodLength   The period length parameter.
@@ -82,7 +82,7 @@ class BankInterest extends \Project\App\Base\Model\AbstractBaseModel
     }
 
     /**
-     * Get calculated state flag property.
+     * Get calculated state flag property
      *
      * @return boolean
      */
@@ -240,7 +240,11 @@ class BankInterest extends \Project\App\Base\Model\AbstractBaseModel
     public function doCalculate()
     {
         # Check if the calculation has run, so its not double run.
-        if ($this->isHasCalculated() === false and empty($this->getInitialBalance()) === false and empty($this->getInterestRate()) === false and empty($this->getPeriodLength()) === false) {
+        if ($this->isHasCalculated() === false and
+            empty($this->getInitialBalance()) === false and
+            empty($this->getInterestRate()) === false and
+            empty($this->getPeriodLength()) === false
+        ) {
             $rate = $this->getInterestRate() / 100;
             # Optimize the for loop without calling any function.
             $periodLength = $this->getPeriodLength();

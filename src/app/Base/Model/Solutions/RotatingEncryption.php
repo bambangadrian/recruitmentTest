@@ -309,8 +309,21 @@ class RotatingEncryption extends \Project\App\Base\Model\AbstractBaseModel
         $evenString = implode('', $evenCharArr);
         $leftRotate = $this->getLeftRotate();
         $rightRotate = $this->getRightRotate();
-        $oddString = substr($oddString, $leftRotate, strlen($oddString) - $leftRotate).substr($oddString, 0, $leftRotate);
-        $evenString = substr($evenString, strlen($evenString) - $rightRotate).substr($evenString, 0, strlen($evenString) - $rightRotate);
+        $oddString
+            = substr(
+                $oddString,
+                $leftRotate,
+                strlen($oddString) - $leftRotate
+            ) . substr($oddString, 0, $leftRotate);
+        $evenString
+            = substr(
+                $evenString,
+                strlen($evenString) - $rightRotate
+            ) . substr(
+                $evenString,
+                0,
+                strlen($evenString) - $rightRotate
+            );
         $oddCharArr = str_split($oddString);
         $evenCharArr = str_split($evenString);
         $cipherArr = [];

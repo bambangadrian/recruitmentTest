@@ -30,7 +30,7 @@ class App
     {
         try {
             if (array_key_exists('m', $_GET) === true and $_GET['m'] !== '') {
-                $modelNamespaceRecruitment = '\\Project\\App\\Base\\Model\\Solutions\\'.$_GET['m'];
+                $modelNamespaceRecruitment = '\\Project\\App\\Base\\Model\\Solutions\\' . $_GET['m'];
                 /**
                  * Model object.
                  *
@@ -41,7 +41,7 @@ class App
                     $modelObject->doUpdate();
                 }
                 $form = $modelObject->loadForm();
-                include_once 'Views/'.$form.'.php';
+                include_once 'Views/' . $form . '.php';
             } else {
                 include_once 'Views/index.php';
             }

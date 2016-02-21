@@ -122,7 +122,7 @@ class CurrencyConversion extends \Project\App\Base\Model\AbstractBaseModel
             $this->Commands[] = $command;
             $this->doExecuteCommand($commandSegment);
         } else {
-            throw new \RuntimeException('Invalid command string : '.$command);
+            throw new \RuntimeException('Invalid command string : ' . $command);
         }
     }
 
@@ -206,7 +206,7 @@ class CurrencyConversion extends \Project\App\Base\Model\AbstractBaseModel
             # Format number 2 digit decimal without rounding.
             $numberSegment = explode('.', number_format($result, 3));
             if (array_key_exists(1, $numberSegment) === true) {
-                $result = $numberSegment[0].'.'.substr($numberSegment[1], 0, 2);
+                $result = $numberSegment[0] . '.' . substr($numberSegment[1], 0, 2);
             }
         }
         return (string)$result;

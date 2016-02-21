@@ -51,7 +51,8 @@
                             for ($j = 1; $j <= 10; $j++) {
                                 ?>
                                 <td>
-                                    <input type="text" size="5" name="<?php echo $fieldName.'['.$i.']['.$j.']'; ?>"/>
+                                    <input type="text" size="5"
+                                           name="<?php echo $fieldName . '[' . $i . '][' . $j . ']'; ?>"/>
                                 </td>
                                 <?php
                             }
@@ -79,7 +80,10 @@
 
 <?php
 if (empty($modelObject->getError()) === false) {
-    echo '<div style="margin: 10px; background-color: #ddd;padding: 10px; border: 1px solid red; color: red; font-weight: bold;">'.implode(', ', $modelObject->getError()).'</div>';
+    echo '<div style="margin: 10px; background-color: #ddd;padding: 10px; border: 1px solid red; color: red; font-weight: bold;">' . implode(
+            ', ',
+            $modelObject->getError()
+        ) . '</div>';
 }
 if ($modelObject->isHasCalculated() === true) {
     ?>

@@ -1,8 +1,9 @@
-# Vendor, User Guides, Bin Directory
+# Vendor, User Guides, Bin Directory, logs
 /user_guide
 /vendor
 /node_modules
 /bin
+/logs
 
 # IDE Files
 /.idea

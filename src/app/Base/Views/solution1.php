@@ -43,7 +43,10 @@
 
 <?php
 if (empty($modelObject->getError()) === false) {
-    echo '<div style="margin: 10px; background-color: #ddd;padding: 10px; border: 1px solid red; color: red; font-weight: bold;">'.implode(', ', $modelObject->getError()).'</div>';
+    echo '<div style="margin: 10px; background-color: #ddd;padding: 10px; border: 1px solid red; color: red; font-weight: bold;">' . implode(
+            ', ',
+            $modelObject->getError()
+        ) . '</div>';
 }
 if ($modelObject->isHasCalculated() === true) {
     $balanceSheet = $modelObject->getBalanceSheet();
@@ -51,7 +54,7 @@ if ($modelObject->isHasCalculated() === true) {
     <h2>Result: </h2>
     <table border="1" class="result">
         <thead>
-        <tr style="background-color:#ddd">
+        <tr style="background-color:#ddd;">
             <th>Year</th>
             <th>Amount</th>
         </tr>
