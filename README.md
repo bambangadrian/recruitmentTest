@@ -5,7 +5,7 @@ By: *[Bambang Adrian S] <bambang.adrian@gmail.com>
 
 ## Features and Support:
 - PSR1,2 Standard and PSR4 Autoloader
-- All the solution/answer models located on `src\Project\App\Base\Model\RecruitmentTest`
+- All the solution/answer models located on `src\App\Base\Model\RecruitmentTest`
 
 ## Requirements : 
 - PHP 5.6
