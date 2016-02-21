@@ -15,6 +15,7 @@
           <option name="LOWER_CASE_BOOLEAN_CONST" value="true" />
           <option name="LOWER_CASE_NULL_CONST" value="true" />
           <option name="ALIGN_CLASS_CONSTANTS" value="true" />
+          <option name="FORCE_SHORT_DECLARATION_ARRAY_STYLE" value="true" />
           <option name="PHPDOC_USE_FQCN" value="true" />
           <option name="NAMESPACE_BRACE_STYLE" value="2" />
         </PHPCodeStyleSettings>

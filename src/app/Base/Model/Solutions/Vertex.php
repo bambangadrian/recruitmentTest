@@ -8,13 +8,13 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace app\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class Vertex.
  *
  * @package    app
- * @subpackage Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
 class Vertex extends \SplDoublyLinkedList
@@ -108,11 +108,11 @@ class Vertex extends \SplDoublyLinkedList
     /**
      * Get distance value.
      *
-     * @param \App\Model\RecruitmentTest\Vertex $vertex Vertex node parameter.
+     * @param \Project\App\Base\Model\Solutions\Vertex $vertex Vertex node parameter.
      *
      * @return integer|null
      */
-    public function getDistance(\App\Model\RecruitmentTest\Vertex $vertex)
+    public function getDistance(\Project\App\Base\Model\Solutions\Vertex $vertex)
     {
         if (array_key_exists($vertex->getKey(), $this->Distances) === true) {
             return $this->Distances[$vertex->getKey()];
@@ -123,16 +123,16 @@ class Vertex extends \SplDoublyLinkedList
     /**
      * Set distance to vertex node item.
      *
-     * @param \App\Model\RecruitmentTest\Vertex $vertex   Vertex node parameter.
-     * @param float                             $distance Vertex node distance.
+     * @param \Project\App\Base\Model\Solutions\Vertex $vertex   Vertex node parameter.
+     * @param float                                    $distance Vertex node distance.
      *
-     * @throws \Exception  If invalid distance given.
+     * @throws \RuntimeException  If invalid distance given.
      * @return void
      */
-    public function setDistance(\App\Model\RecruitmentTest\Vertex $vertex, $distance)
+    public function setDistance(\Project\App\Base\Model\Solutions\Vertex $vertex, $distance)
     {
         if (is_numeric($distance) === false) {
-            throw new \Exception('The distance is invalid, it must be numeric');
+            throw new \RuntimeException('The distance is invalid, it must be numeric');
         }
         $this->Distances[$vertex->getKey()] = $distance;
     }

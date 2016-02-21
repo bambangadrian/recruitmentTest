@@ -8,17 +8,17 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class CurrencyConversion.
  * This class using command string to execute all the currency rate conversion
  *
  * @package    App
- * @subpackage Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
-class CurrencyConversion extends \App\Model\AbstractBaseModel
+class CurrencyConversion extends \Project\App\Base\Model\AbstractBaseModel
 {
 
     /**
@@ -112,7 +112,7 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
      *
      * @param string $command Command string parameter.
      *
-     * @throws \Exception If invalid command string given.
+     * @throws \RuntimeException If invalid command string given.
      * @return void
      */
     public function addCommand($command)
@@ -122,7 +122,7 @@ class CurrencyConversion extends \App\Model\AbstractBaseModel
             $this->Commands[] = $command;
             $this->doExecuteCommand($commandSegment);
         } else {
-            throw new \Exception('Invalid command string : '.$command);
+            throw new \RuntimeException('Invalid command string : '.$command);
         }
     }
 

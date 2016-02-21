@@ -8,16 +8,16 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class BankInterest
  *
  * @package    App
- * @subpackage Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
-class BankInterest extends \App\Model\AbstractBaseModel
+class BankInterest extends \Project\App\Base\Model\AbstractBaseModel
 {
 
     /**
@@ -76,7 +76,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
             $this->setInterestRate($interestRate);
             $this->setPeriodLength($periodLength);
             $this->setInitialBalance($initialBalance);
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -114,7 +114,7 @@ class BankInterest extends \App\Model\AbstractBaseModel
             $this->setPeriodLength($this->getPostValue('periodLength'));
             $this->setInterestRate($this->getPostValue('interestRate'));
             $this->doCalculate();
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
         return true;
@@ -156,13 +156,13 @@ class BankInterest extends \App\Model\AbstractBaseModel
      *
      * @param float $interestRate The interest rate parameter.
      *
-     * @throws \Exception If invalid interest rate given.
+     * @throws \RuntimeException If invalid interest rate given.
      * @return void
      */
     public function setInterestRate($interestRate)
     {
         if ($interestRate < 0 or is_numeric($interestRate) === false) {
-            throw new \Exception('Not valid interest rate, must greater than 0');
+            throw new \RuntimeException('Not valid interest rate, must greater than 0');
         }
         # Set calculated flag to false if any change apply on interest rate number.
         if ($interestRate !== $this->getInterestRate()) {
@@ -186,13 +186,13 @@ class BankInterest extends \App\Model\AbstractBaseModel
      *
      * @param integer $periodLength The period length parameter.
      *
-     * @throws \Exception If invalid period length given.
+     * @throws \RuntimeException If invalid period length given.
      * @return void
      */
     public function setPeriodLength($periodLength)
     {
         if ($periodLength < 0 or is_numeric($periodLength) === false or (integer)$periodLength != $periodLength) {
-            throw new \Exception('Invalid period length, must be greater than 0');
+            throw new \RuntimeException('Invalid period length, must be greater than 0');
         }
         # Set calculated flag to false if any change apply on period length.
         if ($periodLength !== $this->getPeriodLength()) {
@@ -216,13 +216,13 @@ class BankInterest extends \App\Model\AbstractBaseModel
      *
      * @param float $initialBalance The initial balance parameter.
      *
-     * @throws \Exception If invalid initial balance given.
+     * @throws \RuntimeException If invalid initial balance given.
      * @return void
      */
     public function setInitialBalance($initialBalance)
     {
         if ($initialBalance < 0 or is_numeric($initialBalance) === false) {
-            throw new \Exception('Invalid initial balance, must be greater than 0');
+            throw new \RuntimeException('Invalid initial balance, must be greater than 0');
         }
         # Set calculated flag to false if any change apply on initial balance amount.
         if ($initialBalance !== $this->getInitialBalance()) {

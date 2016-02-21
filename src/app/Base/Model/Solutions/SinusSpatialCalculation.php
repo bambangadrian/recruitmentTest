@@ -8,16 +8,16 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class SinusSpatialCalculation
  *
  * @package    App
- * @subpackage Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
-class SinusSpatialCalculation extends \App\Model\AbstractBaseModel
+class SinusSpatialCalculation extends \Project\App\Base\Model\AbstractBaseModel
 {
 
     /**

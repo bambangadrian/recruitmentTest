@@ -8,16 +8,16 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class EncodingDecoding
  *
  * @package    App
- * @subpackage Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
-class EncodingDecoding extends \App\Model\AbstractBaseModel
+class EncodingDecoding extends \Project\App\Base\Model\AbstractBaseModel
 {
 
     /**
@@ -110,7 +110,7 @@ class EncodingDecoding extends \App\Model\AbstractBaseModel
         try {
             $this->setInputString($this->getPostValue('inputString'));
             $this->doEncode();
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
         return true;
@@ -144,7 +144,7 @@ class EncodingDecoding extends \App\Model\AbstractBaseModel
     /**
      * Do the encoding process.
      *
-     * @throws \Exception If any error raised.
+     * @throws \RuntimeException If any error raised.
      * @return void
      */
     public function doEncode()
@@ -175,8 +175,8 @@ class EncodingDecoding extends \App\Model\AbstractBaseModel
                 $this->setEncodeResult($encodeResult);
                 $this->setAlreadyEncoded(true);
             }
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+        } catch (\RuntimeException $e) {
+            throw new \RuntimeException($e->getMessage());
         }
     }
 
@@ -211,7 +211,7 @@ class EncodingDecoding extends \App\Model\AbstractBaseModel
     {
         try {
             $this->doEncode();
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
         return $this->EncodeResult;

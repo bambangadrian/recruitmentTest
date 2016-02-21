@@ -8,16 +8,16 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class RotatingEncryption
  *
  * @package    App
- * @subpackage Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
-class RotatingEncryption extends \App\Model\AbstractBaseModel
+class RotatingEncryption extends \Project\App\Base\Model\AbstractBaseModel
 {
 
     /**
@@ -62,7 +62,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
      * @param integer $leftRotate  Left rotate number parameter.
      * @param integer $rightRotate Right rotate number parameter.
      *
-     * @throws \Exception If any error raised.
+     * @throws \RuntimeException If any error raised.
      */
     public function __construct($inputString = '', $leftRotate = 1, $rightRotate = 1)
     {
@@ -71,7 +71,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
             $this->setInputString($inputString);
             $this->setLeftRotate($leftRotate);
             $this->setRightRotate($rightRotate);
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -88,7 +88,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
             $this->setRightRotate($this->getPostValue('rightRotate'));
             $this->setInputString($this->getPostValue('inputString'));
             $this->doEncrypt($this->getPostValue('algorithmMethod'));
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
         return true;
@@ -119,14 +119,14 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
      *
      * @param integer $leftRotate Left rotate number parameter.
      *
-     * @throws \Exception If invalid left rotate number given.
+     * @throws \RuntimeException If invalid left rotate number given.
      * @return void
      */
     public function setLeftRotate($leftRotate)
     {
         # Validate the left rotate number, it must be positive integer type < 10
         if ($leftRotate >= 10 or is_numeric($leftRotate) === false or (integer)$leftRotate != $leftRotate) {
-            throw new \Exception('Invalid left rotate number, it must be positive integer type < 10');
+            throw new \RuntimeException('Invalid left rotate number, it must be positive integer type < 10');
         }
         if ($leftRotate !== $this->getLeftRotate()) {
             $this->setHasEncrypted(false);
@@ -149,14 +149,14 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
      *
      * @param integer $rightRotate Right rotate number parameter.
      *
-     * @throws \Exception If invalid right rotate number given.
+     * @throws \RuntimeException If invalid right rotate number given.
      * @return void
      */
     public function setRightRotate($rightRotate)
     {
         # Validate the left rotate number, it must be positive integer type < 10
         if ($rightRotate >= 10 or is_numeric($rightRotate) === false or (integer)$rightRotate != $rightRotate) {
-            throw new \Exception('Invalid right rotate number, it must be positive integer type < 10');
+            throw new \RuntimeException('Invalid right rotate number, it must be positive integer type < 10');
         }
         if ($rightRotate !== $this->getRightRotate()) {
             $this->setHasEncrypted(false);
@@ -224,7 +224,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
                 $this->setCipher($cipherText);
                 $this->setHasEncrypted(true);
             }
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -365,7 +365,7 @@ class RotatingEncryption extends \App\Model\AbstractBaseModel
     }
 
     /**
-     * Set cipher text property
+     * Set cipher text property.
      *
      * @param string $cipher The chipper text as encryption result.
      *

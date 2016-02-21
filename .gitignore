@@ -1,0 +1,8 @@
+# Vendor, User Guides, Bin Directory
+/user_guide
+/vendor
+/node_modules
+/bin
+
+# IDE Files
+/.idea

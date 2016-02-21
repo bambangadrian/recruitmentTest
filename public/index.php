@@ -2,7 +2,7 @@
 /**
  * This only for recruitment test purpose.
  *
- * @package   Root
+ * @package   Public
  * @author    Bambang Adrian S <bambang.adrian@gmail.com>
  * @copyright 2016 Proprietary Software
  * @license   No License
@@ -10,5 +10,5 @@
  */
 require_once '../vendor/autoload.php';
 # Mock-up the start index.
-$app = new \Root\App();
+$app = new \Project\App\Base\App();
 $app->load();

@@ -2,19 +2,19 @@
 /**
  * This only for recruitment test purpose.
  *
- * @package   root
+ * @package   App
  * @author    Bambang Adrian S <bambang.adrian@gmail.com>
  * @copyright 2016 Proprietary Software
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace Root;
+namespace Project\App\Base;
 
 /**
  * Class App act as global application controller
  *
- * @package    Root
- * @subpackage -
+ * @package    App
+ * @subpackage Base
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
 class App
@@ -34,16 +34,16 @@ class App
                 /**
                  * Model object.
                  *
-                 * @var \App\Model\AbstractBaseModel $modelObject
+                 * @var \Project\App\Base\Model\AbstractBaseModel $modelObject
                  */
                 $modelObject = new $modelNamespaceRecruitment();
                 if ($_POST) {
                     $modelObject->doUpdate();
                 }
                 $form = $modelObject->loadForm();
-                include_once '../src/app/Views/'.$form.'.php';
+                include_once 'Views/'.$form.'.php';
             } else {
-                include_once '../src/app/Views/index.php';
+                include_once 'Views/index.php';
             }
         } catch (\Exception $e) {
             echo $e->getMessage();

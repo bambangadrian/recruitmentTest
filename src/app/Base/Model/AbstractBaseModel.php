@@ -8,13 +8,13 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model;
+namespace Project\App\Base\Model;
 
 /**
  * Class AbstractBaseModel
  *
  * @package    App
- * @subpackage Model
+ * @subpackage Base\Model
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
 abstract class AbstractBaseModel

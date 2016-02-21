@@ -8,17 +8,17 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class ShortestPathProblem
  * The calculation using Djikstra Algorithm.
  *
  * @package    App
- * @subpackage Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
-class ShortestPathProblem extends \App\Model\AbstractBaseModel
+class ShortestPathProblem extends \Project\App\Base\Model\AbstractBaseModel
 {
 
     /**
@@ -38,14 +38,14 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     /**
      * Start node property.
      *
-     * @var \App\Model\RecruitmentTest\Vertex $StartNode
+     * @var \Project\App\Base\Model\Solutions\Vertex $StartNode
      */
     private $StartNode;
 
     /**
      * Target node property.
      *
-     * @var \App\Model\RecruitmentTest\Vertex $TargetNode
+     * @var \Project\App\Base\Model\Solutions\Vertex $TargetNode
      */
     private $TargetNode;
 
@@ -91,7 +91,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     public function doUpdate()
     {
         try {
-            $nodePathLengthArr = $this->getPostValue('nodePathLength');
+            $nodePathLengthArr = (array)$this->getPostValue('nodePathLength');
             foreach ($nodePathLengthArr as $nodeKey => $nodePath) {
                 foreach ($nodePath as $lengthKey => $length) {
                     if (is_numeric($length) === false) {
@@ -110,7 +110,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
             } else {
                 $this->setError('Please fill the node path length', 10001);
             }
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
         return true;
@@ -129,18 +129,18 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     /**
      * Calculate the shortest path using DJIKSTRA algorithm.
      *
-     * @throws \Exception If start node not given.
-     * @throws \Exception If target node not given.
+     * @throws \RuntimeException If start node not given.
+     * @throws \RuntimeException If target node not given.
      * @return void
      */
     public function doCalculateShortestPath()
     {
         try {
             if ($this->getStartNode() === null) {
-                throw new \Exception('Please set the start node', 10001);
+                throw new \RuntimeException('Please set the start node', 10001);
             }
             if ($this->getTargetNode() === null) {
-                throw new \Exception('Please set the target node', 10002);
+                throw new \RuntimeException('Please set the target node', 10002);
             }
             # Initialize the array for storing.
             $startNodeKey = $this->getStartNode()->getKey();
@@ -154,7 +154,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
                 /**
                  * Convert the nodeObject to vertex.
                  *
-                 * @var \App\Model\RecruitmentTest\Vertex $nodeObject
+                 * @var \Project\App\Base\Model\Solutions\Vertex $nodeObject
                  */
                 $nodeObject = $node;
                 $leftNodes[$nodeObject->getKey()] = 99999;
@@ -172,16 +172,16 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
                 foreach ($nodePathArr as $key => $val) {
                     if (empty($leftNodes[$key]) === false and $leftNodes[$indexMinPath] + $val < $leftNodes[$key]) {
                         $leftNodes[$key] = $leftNodes[$indexMinPath] + $val;
-                        $nearestPath[$key] = array($indexMinPath, $leftNodes[$key]);
+                        $nearestPath[$key] = [$indexMinPath, $leftNodes[$key]];
                     }
                 }
                 unset($leftNodes[$indexMinPath]);
             }
             # Get the path route list.
-            $path = array();
+            $path = [];
             $pos = $targetNodeKey;
             if (!array_key_exists($targetNodeKey, $nearestPath)) {
-                throw new \Exception('The path route cannot found the way to the target node');
+                throw new \RuntimeException('The path route cannot found the way to the target node');
             }
             while ($pos !== $startNodeKey) {
                 $path[] = $pos;
@@ -194,7 +194,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
             $path[] = $startNodeKey;
             $this->setShortestPath(array_reverse($path));
             $this->setHasCalculated(true);
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -221,22 +221,23 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
         try {
             $nodeArr = [];
             # Set the main nodes.
-            foreach ($nodes as $key => $node) {
-                $nodeArr[$key] = new \App\Model\RecruitmentTest\Vertex($key);
+            $nodeKeys = array_keys($nodes);
+            foreach ($nodeKeys as $nodeKey) {
+                $nodeArr[$nodeKey] = new \Project\App\Base\Model\Solutions\Vertex($nodeKey);
             }
             # Set the adjacent nodes.
             foreach ($nodes as $key => $node) {
                 /**
                  * Convert node object variable to vertex.
                  *
-                 * @var \App\Model\RecruitmentTest\Vertex $nodeObject
+                 * @var \Project\App\Base\Model\Solutions\Vertex $nodeObject
                  */
                 $nodeObject = $nodeArr[$key];
                 foreach ($node as $adjacentKey => $distance) {
                     if (array_key_exists($adjacentKey, $nodeArr) === true) {
                         /**
                          * Convert adjacent node object variable to vertex.
-                         * $@var \App\Model\RecruitmentTest\Vertex $adjacentNode
+                         * $@var \Project\App\Base\Model\Solutions\Vertex $adjacentNode
                          */
                         $adjacentNode = $nodeArr[$adjacentKey];
                         $nodeObject->push($adjacentNode);
@@ -246,7 +247,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
                 $this->addNode($nodeObject);
                 $this->setHasCalculated(false);
             }
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -256,7 +257,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
      *
      * @param string $nodeKey Node key parameter.
      *
-     * @return \App\Model\RecruitmentTest\Vertex|null
+     * @return \Project\App\Base\Model\Solutions\Vertex|null
      */
     public function getNode($nodeKey)
     {
@@ -265,7 +266,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
             /**
              * Convert node object to vertex.
              *
-             * @var \App\Model\RecruitmentTest\Vertex $nodeObject
+             * @var \Project\App\Base\Model\Solutions\Vertex $nodeObject
              */
             $nodeObject = $node;
             if ((string)$nodeObject->getKey() === (string)$nodeKey) {
@@ -286,7 +287,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
             if ($this->isHasCalculated() === false) {
                 $this->doCalculateShortestPath();
             }
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
         return $this->ShortestPath;
@@ -315,7 +316,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     /**
      * Get start node property.
      *
-     * @return \App\Model\RecruitmentTest\Vertex
+     * @return \Project\App\Base\Model\Solutions\Vertex
      */
     public function getStartNode()
     {
@@ -340,7 +341,7 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     /**
      * Get target node property.
      *
-     * @return \App\Model\RecruitmentTest\Vertex
+     * @return \Project\App\Base\Model\Solutions\Vertex
      */
     public function getTargetNode()
     {
@@ -385,11 +386,11 @@ class ShortestPathProblem extends \App\Model\AbstractBaseModel
     /**
      * Add node to collection.
      *
-     * @param \App\Model\RecruitmentTest\Vertex $node Node vertex object parameter.
+     * @param \Project\App\Base\Model\Solutions\Vertex $node Node vertex object parameter.
      *
      * @return void
      */
-    protected function addNode(\App\Model\RecruitmentTest\Vertex $node)
+    protected function addNode(\Project\App\Base\Model\Solutions\Vertex $node)
     {
         $this->Nodes[] = $node;
         $this->setNumberOfNodes(count($this->Nodes));

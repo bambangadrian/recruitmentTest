@@ -8,16 +8,16 @@
  * @license   No License
  * @link      https://github.com/bambangadrian/recruitmentTest
  */
-namespace App\Model\RecruitmentTest;
+namespace Project\App\Base\Model\Solutions;
 
 /**
  * Class RecursiveMultiplication
  *
  * @package    App
- * @subpackage \Model\RecruitmentTest
+ * @subpackage Base\Model\Solutions
  * @author     Bambang Adrian S <bambang.adrian@gmail.com>
  */
-class RecursiveMultiplication extends \App\Model\AbstractBaseModel
+class RecursiveMultiplication extends \Project\App\Base\Model\AbstractBaseModel
 {
 
     /**
@@ -75,7 +75,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
             $this->setStartNumber();
             $this->setEndNumber($endNumber);
             $this->setStep($step);
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -92,7 +92,7 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
             $this->setEndNumber($this->getPostValue('setEndNumber'));
             $this->setStep($this->getPostValue('step'));
             $this->doCalculate();
-        } catch (\Exception $e) {
+        } catch (\RuntimeException $e) {
             $this->setError($e->getMessage());
         }
         return true;
@@ -151,17 +151,17 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
      *
      * @param integer $startNumber Start number parameter.
      *
-     * @throws \Exception If invalid start number given.
+     * @throws \RuntimeException If invalid start number given.
      * @return void
      */
     public function setStartNumber($startNumber = 0)
     {
         if ($startNumber < 0) {
-            throw new \Exception('Invalid start number given, must be same or greater than 0');
+            throw new \RuntimeException('Invalid start number given, must be same or greater than 0');
         }
         # Do the hack checker on is integer checking.
         if ((integer)$startNumber != $startNumber or is_numeric($startNumber) === false) {
-            throw new \Exception('Start number must be an positive integer value');
+            throw new \RuntimeException('Start number must be an positive integer value');
         }
         # Set calculated flag to false if any change apply on start number value.
         if ($startNumber !== $this->getStartNumber()) {
@@ -185,17 +185,17 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
      *
      * @param integer $endNumber End number parameter.
      *
-     * @throws \Exception If invalid end number given.
+     * @throws \RuntimeException If invalid end number given.
      * @return void
      */
     public function setEndNumber($endNumber)
     {
         if ($endNumber < 0) {
-            throw new \Exception('Invalid end number given, must be same or greater than 0');
+            throw new \RuntimeException('Invalid end number given, must be same or greater than 0');
         }
         # Do the hack checker on is integer checking.
         if ((integer)$endNumber != $endNumber or is_numeric($endNumber) === false) {
-            throw new \Exception('End number must be an positive integer value');
+            throw new \RuntimeException('End number must be an positive integer value');
         }
         # Set calculated flag to false if any change apply on end number value.
         if ($endNumber !== $this->getEndNumber()) {
@@ -219,17 +219,17 @@ class RecursiveMultiplication extends \App\Model\AbstractBaseModel
      *
      * @param integer $step Step number parameter.
      *
-     * @throws \Exception If invalid step number given.
+     * @throws \RuntimeException If invalid step number given.
      * @return void
      */
     public function setStep($step)
     {
         if ($step < 0) {
-            throw new \Exception('Invalid step number given, must be same or greater than 0');
+            throw new \RuntimeException('Invalid step number given, must be same or greater than 0');
         }
         # Do the hack checker on is integer checking.
         if ((integer)$step != $step or is_numeric($step) === false) {
-            throw new \Exception('Step number must be an positive integer value');
+            throw new \RuntimeException('Step number must be an positive integer value');
         }
         # Set calculated flag to false if any change apply on step number value.
         if ($step !== $this->getStep()) {
