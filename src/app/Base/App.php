@@ -30,7 +30,7 @@ class App
     {
         try {
             if (array_key_exists('m', $_GET) === true and $_GET['m'] !== '') {
-                $modelNamespaceRecruitment = '\\App\\Model\\RecruitmentTest\\'.$_GET['m'];
+                $modelNamespaceRecruitment = '\\Project\\App\\Base\\Model\\Solutions\\'.$_GET['m'];
                 /**
                  * Model object.
                  *
