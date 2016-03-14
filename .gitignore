@@ -4,6 +4,8 @@
 /node_modules
 /bin
 /logs
+composer.lock
+test.php
 
 # IDE Files
 /.idea
