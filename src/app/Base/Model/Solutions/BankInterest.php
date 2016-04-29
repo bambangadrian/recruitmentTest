@@ -127,7 +127,6 @@ class BankInterest extends \Project\App\Base\Model\AbstractBaseModel
      */
     public function getBalanceSheet()
     {
-        $this->doCalculate();
         return $this->BalanceSheet;
     }
 

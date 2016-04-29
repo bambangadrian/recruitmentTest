@@ -18,9 +18,9 @@ Sorry for your uncovenience, because it's build under simple route system.
 
 ## 1. Bank Interest Calculation (Bunga Bank)
 ### Testing for bank interest application.
-`$appBankInterestCalculation = new \Project\App\Base\Model\RecruitmentTest\BankInterest();`
+`$appBankInterestCalculation = new \Project\App\Base\Model\Solutions\BankInterest();`
 
-`$appBankInterestCalculation->setPeriodLength(-15);`
+`$appBankInterestCalculation->setPeriodLength(15);`
 
 `echo $appBankInterestCalculation->getEndBalance();`
 
@@ -28,7 +28,7 @@ Sorry for your uncovenience, because it's build under simple route system.
 ## 2. Recursion Multiplication (Perkalian Rekursif)
 ### Testing for recursive multiplication application.
 
-`$appRecursiveMultiplication = new \Project\App\Base\Model\RecruitmentTest\RecursiveMultiplication(9, 3);`
+`$appRecursiveMultiplication = new \Project\App\Base\Model\Solutions\RecursiveMultiplication(9, 3);`
 
 `var_dump($appRecursiveMultiplication->getResultTable());`
 
@@ -37,9 +37,9 @@ Sorry for your uncovenience, because it's build under simple route system.
 ## 3. Encoding/Decoding
 ### Testing for encoding decoding application.
 
-`$appEncodingDecoding = new \Project\App\Base\Model\RecruitmentTest\EncodingDecoding('bambang_adrian_sitompul');`
+`$appEncodingDecoding = new \Project\App\Base\Model\Solutions\EncodingDecoding('bambang_adrian_sitompul');`
 
-`var_dump(\Project\App\Base\Model\RecruitmentTest\EncodingDecoding::getCodeTable());`
+`var_dump(\Project\App\Base\Model\Solutions\EncodingDecoding::getCodeTable());`
 
 `var_dump($appEncodingDecoding->getEncodeResult());`
 
@@ -48,7 +48,7 @@ Sorry for your uncovenience, because it's build under simple route system.
 
 Set first the node path length array (2 dimension)
 
-`$appShortestPathProblem = new \Project\App\Base\Model\RecruitmentTest\ShortestPathProblem();`
+`$appShortestPathProblem = new \Project\App\Base\Model\Solutions\ShortestPathProblem();`
 
 `$appShortestPathProblem->setNodes($distanceArr);`
 
@@ -64,7 +64,7 @@ Set first the node path length array (2 dimension)
 ## 5. Sinus Graph Spatial Calculation (Menghitung Luas Fungsi Sin)
 ### Testing for sinus spatial calculation application.
 
-`$appSinusSpatialCalculation = new \Project\App\Base\Model\RecruitmentTest\SinusSpatialCalculation();`
+`$appSinusSpatialCalculation = new \Project\App\Base\Model\Solutions\SinusSpatialCalculation();`
 
 `$appSinusSpatialCalculation->setLowerLimit(0);`
 
@@ -82,7 +82,7 @@ Set first the node path length array (2 dimension)
 - All the command will be converted to uppercase letter.
 - Multiple command & sequence applied.
 
-`$appCurrencyConversion = new \Project\App\Base\Model\RecruitmentTest\CurrencyConversion();`
+`$appCurrencyConversion = new \Project\App\Base\Model\Solutions\CurrencyConversion();`
     
 `$appCurrencyConversion->addCommand('ADD USD IDR 14000'); # Return success / true if success.`
 
@@ -94,7 +94,7 @@ Set first the node path length array (2 dimension)
 ## 7. Rotating Encryption
 ### Testing for rotating encryption application.
 
-`$appRotatingEncryption = new \Project\App\Base\Model\RecruitmentTest\RotatingEncryption();`
+`$appRotatingEncryption = new \Project\App\Base\Model\Solutions\RotatingEncryption();`
 
 `$appRotatingEncryption->setInputString('fritzgamaliel');`
 

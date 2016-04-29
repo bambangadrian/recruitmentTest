@@ -1,21 +1,22 @@
 <?php
 # Testing for bank interest application.
-//$appBankInterestCalculation = new \Project\App\Base\Model\RecruitmentTest\BankInterest();
-//$appBankInterestCalculation->setPeriodLength(-15);
+require_once '../vendor/autoload.php';
+//$appBankInterestCalculation = new \Project\App\Base\Model\Solutions\BankInterest();
+//$appBankInterestCalculation->setPeriodLength(15);
 //echo $appBankInterestCalculation->getEndBalance();
 # -------------------------------------------------
 # Testing for recursive multiplication application.
-//$appRecursiveMultiplication = new \Project\App\Base\Model\RecruitmentTest\RecursiveMultiplication(9, 3);
+//$appRecursiveMultiplication = new \Project\App\Base\Model\Solutions\RecursiveMultiplication(9, 3);
 //var_dump($appRecursiveMultiplication->getResultTable());
 //var_dump($appRecursiveMultiplication->getCalculationResult());
 # -------------------------------------------------
 # Testing for encoding decoding application.
-//$appEncodingDecoding = new \Project\App\Base\Model\RecruitmentTest\EncodingDecoding('bambang_adrian_sitompul');
-//var_dump(\Project\App\Base\Model\RecruitmentTest\EncodingDecoding::getCodeTable());
+//$appEncodingDecoding = new \Project\App\Base\Model\Solutions\EncodingDecoding('bambang_adrian_sitompul');
+//var_dump(\Project\App\Base\Model\Solutions\EncodingDecoding::getCodeTable());
 //var_dump($appEncodingDecoding->getEncodeResult());
 # -------------------------------------------------
 # Testing for shortest path problem application.
-//$appShortestPathProblem = new \Project\App\Base\Model\RecruitmentTest\ShortestPathProblem();
+//$appShortestPathProblem = new \Project\App\Base\Model\Solutions\ShortestPathProblem();
 //$distanceArr = array();
 //$distanceArr[1][2] = 7;
 //$distanceArr[1][3] = 9;
@@ -42,7 +43,7 @@
 //echo $appShortestPathProblem->getShortestPathRouteString();
 # -------------------------------------------------
 # Test for currency conversion application.
-//$appCurrencyConversion = new \Project\App\Base\Model\RecruitmentTest\CurrencyConversion();
+//$appCurrencyConversion = new \Project\App\Base\Model\Solutions\CurrencyConversion();
 # Each command will separate by new line feed (\n\r)
 # All the command will be converted to uppercase letter.
 # Multiple command & sequence applied.
@@ -51,16 +52,17 @@
 //$appCurrencyConversion->addCommand('END');
 # --------------------------------------------------
 # Testing for rotating encryption application.
-//$appRotatingEncryption = new \Project\App\Base\Model\RecruitmentTest\RotatingEncryption();
+//$appRotatingEncryption = new \Project\App\Base\Model\Solutions\RotatingEncryption();
 //$appRotatingEncryption->setInputString('fritzgamaliel');
 //$appRotatingEncryption->setLeftRotate(5);
 //$appRotatingEncryption->setRightRotate(8);
 //echo $appRotatingEncryption->getCipher();
 # --------------------------------------------------
 # Testing for sinus spatial calculation application.
-//$appSinusSpatialCalculation = new \Project\App\Base\Model\RecruitmentTest\SinusSpatialCalculation();
+//$appSinusSpatialCalculation = new \Project\App\Base\Model\Solutions\SinusSpatialCalculation();
 //$appSinusSpatialCalculation->setLowerLimit(0);
 //$appSinusSpatialCalculation->setUpperLimit(90);
 //$appSinusSpatialCalculation->setIteration(100);
 //echo $appSinusSpatialCalculation->getAreaWide();
 # --------------------------------------------------
+
