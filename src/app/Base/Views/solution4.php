@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Solution 3 - Encoding/Decoding</title>
+    <title>Solution 4 - Shortest Path Problem (Using Djikstra Algorithm - Doubly LinkedList)</title>
     <style>
         table th {
             font-weight: bold;
