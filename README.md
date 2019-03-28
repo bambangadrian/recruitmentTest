@@ -1,6 +1,8 @@
 
 #Recruitment Test - Solutions
 
+[![Join the chat at https://gitter.im/bambangadrian/recruitmentTest](https://badges.gitter.im/bambangadrian/recruitmentTest.svg)](https://gitter.im/bambangadrian/recruitmentTest?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 By: *[Bambang Adrian S] <bambang.adrian@gmail.com> 
 
 ## Features and Support:
